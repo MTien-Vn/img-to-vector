@@ -1,0 +1,5 @@
+__pycache__/
+venv/
+bg-config.json
+.vscode/
+.DS_Store
