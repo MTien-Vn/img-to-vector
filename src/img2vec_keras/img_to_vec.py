@@ -23,7 +23,7 @@ class Img2Vec(object):
             response = requests.get(image_path)
             if response.status_code == 200 and response.content is not None:
                 image = Image.open(BytesIO(response.content))
-                embedding = self.img_model(image)
+                embedding = self.img_model.encode(image)
                 return embedding.tolist()
             else:
                 return self.default_vector
