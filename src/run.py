@@ -2,13 +2,15 @@ import json
 from flask import Flask, request
 import concurrent.futures
 import time
+from sentence_transformers import SentenceTransformer
 app = Flask(__name__)
 
 from img2vec_keras import Img2Vec
+img_model = SentenceTransformer('clip-ViT-B-32')
 
 @app.route('/img2vector', methods=["POST"])
 def img2vector():
-  img2vec = Img2Vec()
+  img2vec = Img2Vec(img_model)
   urls = request.json.get('urls')
   urls_dic = json.loads(urls)
   # for id in urls_dic.keys():
@@ -40,4 +42,4 @@ def img2vector():
   return res
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=5001)
+  app.run(host='0.0.0.0', port=5012)

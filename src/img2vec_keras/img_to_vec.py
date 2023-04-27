@@ -1,7 +1,6 @@
 import os
 import requests
 from io import BytesIO
-from sentence_transformers import SentenceTransformer
 from PIL import Image
 import ssl
 
@@ -9,9 +8,10 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 _HEIGHT = 512
 class Img2Vec(object):
-    def __init__(self):
+    def __init__(self, img_model):
         self.default_vector = self.get_default_vector()
-        self.img_model = SentenceTransformer('clip-ViT-B-32')
+        # self.img_model = SentenceTransformer('clip-ViT-B-32')
+        self.img_model = img_model
 
 
     def get_vec(self, image_path):
